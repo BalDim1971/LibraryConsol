@@ -43,8 +43,9 @@ class Book:
         self.__author = author
         self.__year = year
         self.__status = status
-        self.__json_data = {}
-        Book.id = id_book if id_book != 0 else Book.id + 1
+        Book.id = id_book \
+            if ( id_book != 0 and id_book > Book.id) \
+            else Book.id + 1
     
     def __repr__(self):
         """
@@ -53,7 +54,7 @@ class Book:
         :return:
         """
         return (f'{self.__id_book}\t{self.__title}\t{self.__author}\t'
-                f'{self.__year}\t{self.__status}\t{self.__json_data}')
+                f'{self.__year}\t{self.__status}')
     
     def __str__(self):
         """
@@ -124,13 +125,25 @@ class Book:
     def status(self, status: bool):
         self.__status = status
     
-    @status.setter
-    def status(self, status: str):
-        self.__status = [k for k, v in Book.status_dict.items() if v == status]
+    @status_str.setter
+    def status_str(self, status: str):
+        is_status = True if status == Book.status_dict[True] else False
+        self.__status = is_status
+        
+    def to_json(self) -> dict:
+        json_data = {
+            "id": self.__id_book,
+            "title": self.__title,
+            "author": self.__author,
+            "year": self.__year,
+            "status": Book.status_dict[self.__status]
+        }
+        return json_data
     
-    def to_json(self):
-        self.__json_data["title"] = self.__title
-        self.__json_data["author"] = self.__author
-        self.__json_data["year"] = self.__year
-        self.__json_data["status"] = Book.status_dict[self.__status]
-        return self.__json_data
+    def from_json(self, json_data: dict):
+        self.__id_book = json_data["id"]
+        self.__title = json_data["title"]
+        self.__author = json_data["autor"]
+        self.__year = json_data["year"]
+        self.__status = [k for k, v in Book.status_dict.items()
+                         if v == json_data['status']]
