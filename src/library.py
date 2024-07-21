@@ -58,6 +58,9 @@ class ListBook:
     def list_book(self) -> list:
         return self.__books
     
+    def clear(self):
+        self.__books.clear()
+        
     def count(self):
         """
         Количество книг
@@ -79,6 +82,15 @@ class ListBook:
         """
         self.__books.append(book)
     
+    def add_list_book(self, books: list[Book]):
+        """
+        Добавить список книг в словарь.
+        :param books: Список добавляемых книг.
+        :return:
+        """
+        for book in books:
+            self.__books.append(book)
+    
     def remove_book(self, id_book: int):
         """
         Удаляем из списка книгу по идентификатору.
@@ -97,11 +109,11 @@ class ListBook:
         """
         list_book = []
         for book in self.__books:
-            if author in book['author']:
+            if author in book.author:
                 list_book.append(book)
         return list_book
     
-    def find_book_title(self, title: str):
+    def find_book_title(self, title: str) -> list[Book]:
         """
         Ищем книгу по названию.
         :param title: Название книги.
@@ -109,11 +121,11 @@ class ListBook:
         """
         list_book = []
         for book in self.__books:
-            if title in book['title']:
+            if title in book.title:
                 list_book.append(book)
         return list_book
     
-    def find_book_year(self, year: int):
+    def find_book_year(self, year: int) -> list[Book]:
         """
         Ищем книгу по году издания.
         :param year: Год издания, целое число, 4 цифры.
@@ -121,7 +133,7 @@ class ListBook:
         """
         list_book = []
         for book in self.__books:
-            if book['year'] == year:
+            if book.year == year:
                 list_book.append(book)
         return list_book
     
