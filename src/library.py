@@ -41,11 +41,12 @@ class ListBook:
         :return:
         """
         list_book_str: str = ''
-        len_id: int = len('Идентификатор')
-        len_author: int = len('Автор')
-        len_title: int = len('Название')
-        len_year: int = len('Год издания')
-        len_status: int = len('Наличие')
+        len_id: int = len(Book.name_fields[0])
+        len_author: int = len(Book.name_fields[1])
+        len_title: int = len(Book.name_fields[2])
+        len_year: int = len(Book.name_fields[3])
+        len_status: int = len(Book.name_fields[4])
+        
         for book in self.__books:
             len_author = len(book.author) \
                 if len(book.author) > len_author else len_author
@@ -54,11 +55,12 @@ class ListBook:
             len_status = len(Book.status_dict[book.status]) \
                 if len(Book.status_dict[book.status]) > len_status \
                 else len_status
-        print(f'{"Идентификатор":{len_id}} |'
-              f'{"Автор":{len_author}} |'
-              f'{"Название":{len_title}} |'
-              f'{"Год издания":{len_year}} |'
-              f'{"Наличие":{len_status}}')
+        
+        print(f'{Book.name_fields[0]:{len_id}} |'
+              f'{Book.name_fields[1]:{len_author}} |'
+              f'{Book.name_fields[2]:{len_title}} |'
+              f'{Book.name_fields[3]:{len_year}} |'
+              f'{Book.name_fields[4]:{len_status}}')
         for book in self.__books:
             print(f'{book.id_book:{len_id}} |'
                   f'{book.author:{len_author}} |'

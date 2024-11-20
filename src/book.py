@@ -22,6 +22,8 @@ class Book:
     """
     id: int = 1
     status_dict: dict = {True: 'в наличии', False: 'выдана'}
+    name_fields: tuple = ('Идентификатор', 'Название', 'Автор',
+                          'Год издания', 'Наличие')
     
     __slots__ = ('__id_book', '__title', '__author', '__year', '__status',)
     
