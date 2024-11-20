@@ -21,13 +21,12 @@ class Book:
     
     """
     id: int = 1
-    status_dict = {True: 'в наличии', False: 'выдана'}
+    status_dict: dict = {True: 'в наличии', False: 'выдана'}
     
-    __slots__ = ('__id_book', '__title', '__author', '__year', '__status',
-                 '__json_data')
+    __slots__ = ('__id_book', '__title', '__author', '__year', '__status',)
     
     def __init__(self, title: str, author: str,
-                 year: int, status: bool = True, id_book: int = 0):
+                 year: int, status: bool = True, id_book: int = 0) -> None:
         """
         Инициализация объекта.
         :param title: Название книги.
@@ -43,8 +42,7 @@ class Book:
         self.__author = author
         self.__year = year
         self.__status = status
-        Book.id = id_book \
-            if ( id_book != 0 and id_book > Book.id) \
+        Book.id = id_book if (id_book != 0 and id_book > Book.id) \
             else Book.id + 1
     
     def __repr__(self):
@@ -129,7 +127,7 @@ class Book:
     def status_str(self, status: str):
         is_status = True if status == Book.status_dict[True] else False
         self.__status = is_status
-        
+    
     def to_json(self) -> dict:
         json_data = {
             "id": self.__id_book,
