@@ -102,31 +102,31 @@ class Book:
     # Блок сеттеров
     # Сеттер для идентификатора
     @id_book.setter
-    def id_book(self, id_book: int):
+    def id_book(self, id_book: int) -> None:
         self.__id_book = id_book
     
     # Сеттер для названия
     @title.setter
-    def title(self, title: str):
+    def title(self, title: str) -> None:
         self.__title = title
     
     # Сеттер для автора
     @author.setter
-    def author(self, author: str):
+    def author(self, author: str) -> None:
         self.__author = author
     
     # Сеттер для года
     @year.setter
-    def year(self, year: int):
+    def year(self, year: int) -> None:
         self.__year = year
     
     # Сеттер для статуса
     @status.setter
-    def status(self, status: bool):
+    def status(self, status: bool) -> None:
         self.__status = status
     
     @status_str.setter
-    def status_str(self, status: str):
+    def status_str(self, status: str) -> None:
         is_status = True if status == Book.status_dict[True] else False
         self.__status = is_status
     
@@ -140,7 +140,7 @@ class Book:
         }
         return json_data
     
-    def from_json(self, json_data: dict):
+    def from_json(self, json_data: dict) -> None:
         self.__id_book = json_data["id"]
         self.__title = json_data["title"]
         self.__author = json_data["autor"]

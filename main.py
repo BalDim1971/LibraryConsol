@@ -47,7 +47,7 @@ def main():
                 if id_book.isdigit():
                     index = list_book.find_index(int(id_book))
                     if index is None:
-                        print(f'Книги с таким {id_book} нет.')
+                        print(f'Книги с идентификатором {id_book} нет.')
                         continue
                     list_book.remove_book(int(id_book))
             case 5:
