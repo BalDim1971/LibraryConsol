@@ -44,7 +44,8 @@ class Book:
         self.__author = author
         self.__year = year
         self.__status = status
-        Book.id = id_book if (id_book != 0 and id_book > Book.id) \
+        Book.id = id_book \
+            if (id_book != 0 and id_book > Book.id) \
             else Book.id + 1
     
     def __repr__(self):
